@@ -69,6 +69,7 @@ class MyExtensionthing {
     }
     //i think this is the right way to do this thing
     HEXBINMAP = {'0':'0000','1':'0001','2':'0010','3':'0011','4':'0100','5':'0101','6':'0110','7':'0111','8':'1000','9':'1001','A':'1010','B':'1011','C':'1100','D':'1101','E':'1110','F':'1111','a':'1010','b':'1011','c':'1100','d':'1101','e':'1110','f':'1111'}
+    BINHEXMAP = Object.fromEntries(Object.entries(this.HEXBINMAP).map(([key, value]) => [value, key]));
     turnHexDigToDec(digittoconvert) {
         if (/^\d+$/.test(digittoconvert)) {
             return(Number(digittoconvert));
@@ -87,7 +88,7 @@ class MyExtensionthing {
             for (let indexthing of (hex.split(" "))) {
                 var banana = `${banana}` + String.fromCharCode((this.turnHexDigToDec(indexthing.charAt(0)) * 16) + this.turnHexDigToDec(indexthing.charAt(1)));
             }
-            return (banana.trim());
+            return banana
         }
     }
     async Hex2Bin(args) {
@@ -117,7 +118,7 @@ class MyExtensionthing {
             }
             var banana = `${banana}` + String.fromCharCode(idonwannakeepmakingvariablenamessssss);
           }
-          return (banana.trim());
+          return banana
         }
     }
     async Bin2Hex(args) {
@@ -125,18 +126,62 @@ class MyExtensionthing {
       if (!/^\s*([0-1]{8}(\s|$))*$/.test(bin)) {
         return "INVALID";
       } else {
-        let BINHEXMAP = Object.fromEntries(Object.entries(this.HEXBINMAP).map(([key, value]) => [value, key]));
         var banana = '';
             for (let indexthing of (bin.split(" "))) {
-                var banana = `${banana} ` + BINHEXMAP[indexthing.substring(0,4)] + BINHEXMAP[indexthing.substring(4,8)];
+                var banana = `${banana} ` + this.BINHEXMAP[indexthing.substring(0,4)] + this.BINHEXMAP[indexthing.substring(4,8)];
             }
             return (banana.trim());
       }
     }
     async String2Hex(args) {
-        return args["Txt"];
+      if (args["Txt"] != ""){
+        var banana = '';
+        for (let indexthing of args["Txt"].split("")) {
+          var OOOOOHHH = ''
+          //this is a donkey kong refrence
+          var AHHHHHHHHHHHH = indexthing.charCodeAt();
+          //why must coding be so tedious
+          for (let ENDMYSUFFERINGPLEASE = 0; ENDMYSUFFERINGPLEASE < 8; ENDMYSUFFERINGPLEASE++) {
+            if (AHHHHHHHHHHHH % 2 === 1) {
+            var OOOOOHHH = 1 + `${OOOOOHHH}`
+            var AHHHHHHHHHHHH = (AHHHHHHHHHHHH - 1) / 2
+            } else {
+            var OOOOOHHH = 0 + `${OOOOOHHH}`
+            var AHHHHHHHHHHHH = (AHHHHHHHHHHHH) / 2
+            }
+            //this isn't confusing at all
+          }
+          var banana = `${banana} ` + this.BINHEXMAP[OOOOOHHH.substring(0,4)] + this.BINHEXMAP[OOOOOHHH.substring(4,8)];
+        }
+        return (banana.trim());
+      } else {
+         return '';
+      }
     }
     async String2Bin(args) {
-        return args["Txt"];
+      if (args["Txt"] != ""){
+        var orange = '';
+        for (let indexthing of args["Txt"].split("")) {
+          var OOOOOHHH = ''
+          //this is a donkey kong refrence
+          var AHHHHHHHHHHHH = indexthing.charCodeAt();
+          //why must coding be so tedious
+          for (let ENDMYSUFFERINGPLEASE = 0; ENDMYSUFFERINGPLEASE < 8; ENDMYSUFFERINGPLEASE++) {
+            if (AHHHHHHHHHHHH % 2 === 1) {
+            var OOOOOHHH = 1 + `${OOOOOHHH}`
+            var AHHHHHHHHHHHH = (AHHHHHHHHHHHH - 1) / 2
+            } else {
+            var OOOOOHHH = 0 + `${OOOOOHHH}`
+            var AHHHHHHHHHHHH = (AHHHHHHHHHHHH) / 2
+            }
+            //this isn't confusing at all
+          }
+        var orange = `${orange} ` + `${OOOOOHHH}`
+        }
+        return (orange.trim());
+      } else {
+         return '';
+      }
+      //something, something, orange you glad i didnt say banana?
     }
 }Scratch.extensions.register(new MyExtensionthing());
