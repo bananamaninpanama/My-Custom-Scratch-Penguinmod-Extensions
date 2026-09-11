@@ -1,4 +1,6 @@
 //original: https://extensions.penguinmod.com/extensions/AndrewGaming587/agBuffer.js
+//i love how i dont know at all how this works and just copied the code i thought made this work based on my experience of making scratch extensions(2 halves(i hardly count the first one a few years ago, and a newer one was really clunky so i redid it from scratch) of an extension in extforge, and one extension from copying a 'hello world' example extension from somewhere(the one i made is the ascii2other extension here, its also the newer extension referred to before))
+//i wish i understood this T-T
 
 
 (async function(Scratch) {
