@@ -70,7 +70,7 @@ class MyExtensionthing {
     async Hex2String(args) {
     let hex = args["Hex"].trim();
       if (hex != ""){
-        if (!/^\s*([0-9a-fA-F]{2}(\s|$))*$/.test(hex)) {
+        if (!(hex.split(/\s+/).every(block => /^[0-9a-fA-F]{2}$/.test(block)))) {
           return "INVALID";
         } else {
           var banana = '';
@@ -86,7 +86,7 @@ class MyExtensionthing {
     async Hex2Bin(args) {
       let hex = args["Hex"].trim();
       if (hex != ""){
-          if (!/^\s*([0-9a-fA-F]{2}(\s|$))*$/.test(hex)) {
+          if (!(hex.split(/\s+/).every(block => /^[0-9a-fA-F]{2}$/.test(block)))) {
           return "INVALID";
           } else {
             var banana = '';
@@ -102,7 +102,7 @@ class MyExtensionthing {
     async Bin2String(args) {
       let bin = args["Bin"].trim();
       if (bin != ""){
-        if (!/^\s*([0-1]{8}(\s|$))*$/.test(bin)) {
+        if (!(bin.split(/\s+/).every(block => /^[0-1]{8}$/.test(block)))) {
           return "INVALID";
           } else {
             var banana = '';
@@ -118,7 +118,7 @@ class MyExtensionthing {
     async Bin2Hex(args) {
       let bin = args["Bin"].trim();
       if (bin != ""){
-        if (!/^\s*([0-1]{8}(\s|$))*$/.test(bin)) {
+        if (!(bin.split(/\s+/).every(block => /^[0-1]{8}$/.test(block)))) {
           return "INVALID";
         } else {
           var banana = '';
