@@ -64,26 +64,6 @@ class MyExtensionthing {
                             "defaultValue": "48 65 78 61 64 65 63 69 6d 61 6c"
                     }
                 }
-            }, {
-                "opcode": "Dec2String",
-                "text": "Convert String [Dec] to Hex",
-                "blockType": "reporter",
-                "arguments": {
-                    "Dec": {
-                        "type": "string",
-                        "defaultValue": "String"
-                    }
-                }
-            }, {
-                "opcode": "String2Dec",
-                "text": "Convert String [Txt] to Hex",
-                "blockType": "reporter",
-                "arguments": {
-                    "Txt": {
-                        "type": "string",
-                        "defaultValue": "String"
-                    }
-                }
             }]
         };
     }
