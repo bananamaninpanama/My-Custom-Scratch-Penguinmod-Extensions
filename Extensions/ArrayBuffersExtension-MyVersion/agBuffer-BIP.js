@@ -1019,14 +1019,6 @@
                     }
                 },
                 {
-                    opcode: 'getStringFromPointer',
-                    text: 'get string from pointer [PTR]',
-                    blockType: BlockType.REPORTER,
-                    arguments: {
-                        PTR: agBuffer.PointerArgument
-                    }
-                },
-                {
                     opcode: 'getPointerBuffer',
                     text: 'get array buffer of pointer [PTR]',
                     ...agBuffer.Block,
@@ -1089,6 +1081,18 @@
                     arguments: {
                         VALUE: {type:ArgumentType.BOOLEAN}
                     },
+                },
+                {
+                    blockType: BlockType.LABEL,
+                    text: "BIP's Blocks"
+                },         
+                {
+                    opcode: 'getStringFromPointer',
+                    text: 'get string from pointer [PTR]',
+                    blockType: BlockType.REPORTER,
+                    arguments: {
+                        PTR: agBuffer.PointerArgument
+                    }
                 },
                 ],
                 "menus":{
@@ -1995,7 +1999,7 @@
             }
         }
         setValue(args) {
-            if (!args.BUFFER && !agBuffer.disableErrorHandling) return;
+            if (!args.BUFFER && !agBuffer.disableErrorHandling) return 0;
             
             let buffer = new ArrayBufferType(args.BUFFER)
             const type = args.TYPE
