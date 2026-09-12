@@ -176,14 +176,4 @@ class MyExtensionthing {
       }
       //something, something, orange you glad i didnt say banana?
     }
-    async Dec2String(args) {
-      return()
-      }
-      //something, something, orange you glad i didnt say banana?
-    }
-    async String2Dec(args) {
-      return()
-      }
-      //something, something, orange you glad i didnt say banana?
-    }
 }Scratch.extensions.register(new MyExtensionthing());
