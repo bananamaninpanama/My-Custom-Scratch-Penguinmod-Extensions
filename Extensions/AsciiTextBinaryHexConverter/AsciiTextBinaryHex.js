@@ -1,8 +1,4 @@
 class MyExtensionthing {
-    if (!Scratch.extensions.unsandboxed) {
-        alert("This extension needs to be unsandboxed to run!")
-        return
-    }
     getInfo() {
         return {
             "id": "AsciiTextBinaryHex",
