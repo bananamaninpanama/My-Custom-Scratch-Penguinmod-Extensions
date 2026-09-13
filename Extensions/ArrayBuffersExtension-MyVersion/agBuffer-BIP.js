@@ -2254,6 +2254,7 @@
         }
         getStringFromPointer({PTR}) {
             if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return "(invalid)";
+            return PTR //this is a test
             return PTR.getSTRINGValue()
         }
 
