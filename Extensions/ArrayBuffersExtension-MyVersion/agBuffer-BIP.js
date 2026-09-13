@@ -448,7 +448,7 @@
         }
         getSTRINGValue() {
             try {
-                if (this.buffer.arrayBuffer === new Uint8Array(0)) return "the arraybuffer IS EQUAL TO 'new Uint8Array(0)'";
+                if (this.buffer.arrayBuffer === new Uint8Array(16).buffer) return "the arraybuffer IS EQUAL TO 'new Uint8Array(16)'";
                 return new TextDecoder().decode(this.buffer.arrayBuffer); //this better tell me what it is
                 let banana = this.buffer.getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian)
                 if (banana === new Uint8Array(0)) return "IS EQUAL TO 'new Uint8Array(0)'";
