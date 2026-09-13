@@ -221,6 +221,35 @@
             }
 
         }
+        getSTRING(type = "Uint8",index,endian = false) {
+            switch (type) {
+                    case "Uint8":
+                        return new Uint8Array([this.dataView.getUint8(index)]);
+                    case "Int8":
+                        return new BigInt8Array([this.dataView.getInt8(index)]);
+                    case "Uint16":
+                        return new BigUint16Array([this.dataView.getUint16(index,endian)]);
+                    case "Int16":
+                        return new BigInt16Array([this.dataView.getInt16(index,endian)]);
+                    case "Uint32":
+                        return new BigUint32Array([this.dataView.getUint32(index,endian)]);
+                    case "Int32":
+                        return new BigInt32Array([this.dataView.getInt32(index,endian)]);
+                    case "Uint64":
+                        return new BigUint64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigUint64(index,endian))]);
+                    case "Int64":
+                        return new BigInt64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigInt64(index,endian)]);
+                    case "Float16":
+                        return new Float16Array([this.dataView.getFloat16(index,endian)]);
+                    case "Float32":
+                        return new Float32Array([this.dataView.getFloat32(index,endian)]);
+                    case "Float64":
+                        return new Float64Array([this.dataView.getFloat64(index,endian)]);
+                    default:
+                        throw new TypeError(`Unknown Type: ${type}`);
+                        // new DataView(new ArrayBuffer(32)).getUint32(0)
+                }
+        }
         static wrapBigInts(bi) {
             // a method to let js BigInts not break everything ever either by converting it to a jwInt if the extension is added, or making it a string otherwise.
             if (typeof bi != "bigint") return bi;
@@ -418,47 +447,7 @@
             }
         }
         getSTRINGValue() {
-                let banana = 1;
-                let TYPETEST = this.type;
-              	switch (TYPETEST) {
-                    case "Uint8":
-                        banana = new Uint8Array([ArrayBufferType.buffer.dataView.getUint8(this.index % this.buffer.arrayBuffer.byteLength)]);
-                        break;
-                    case "Int8":
-                        banana = new BigInt8Array([ArrayBufferType.buffer.dataView.getInt8(this.index % this.buffer.arrayBuffer.byteLength)]);
-                    	break;
-                    case "Uint16":
-                        banana = new BigUint16Array([ArrayBufferType.buffer.dataView.getUint16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
-                    	break;
-                    case "Int16":
-                        banana = new BigInt16Array([ArrayBufferType.buffer.dataView.getInt16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
-                    	break;
-                    case "Uint32":
-                        banana = new BigUint32Array([ArrayBufferType.buffer.dataView.getUint32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
-                    	break;
-                    case "Int32":
-                        banana = new BigInt32Array([ArrayBufferType.buffer.dataView.getInt32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
-                    	break;
-                    case "Uint64":
-                        banana = new BigUint64Array([ArrayBufferType.buffer.wrapBigInts(ArrayBufferType.dataView.getBigUint64((this.index % this.buffer.arrayBuffer.byteLength),this.endian))]);
-                    	break;
-                    case "Int64":
-                        banana = new BigInt64Array([ArrayBufferType.buffer.wrapBigInts(ArrayBufferType.dataView.getBigInt64((this.index % this.buffer.arrayBuffer.byteLength),this.endian))]);
-                    	break;
-                    case "Float16":
-                        banana = new Float16Array([ArrayBufferType.buffer.dataView.getFloat16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
-                    	break;
-                    case "Float32":
-                        banana = new Float32Array([ArrayBufferType.buffer.dataView.getFloat32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
-                    	break;
-                    case "Float64":
-                        banana = new Float64Array([ArrayBufferType.buffer.dataView.getFloat64((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
-                    	break;
-                    default:
-                        throw new TypeError(`Unknown Type: ${this.type}`);
-                        // new DataView(new ArrayBuffer(32)).getUint32(0)
-                }
-                return new TextDecoder().decode(new Uint8Array(banana.buffer));
+                return new TextDecoder().decode(new Uint8Array(getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian).buffer));
             
         }
         setValue(value) {
