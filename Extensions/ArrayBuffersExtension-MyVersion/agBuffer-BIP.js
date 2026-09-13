@@ -448,14 +448,9 @@
         }
         getSTRINGValue() {
             try {
-                if (this.buffer.arrayBuffer === new Uint8Array(16)) return "the arraybuffer IS EQUAL TO 'new Uint8Array(16)'";
-                if (this.buffer.arrayBuffer.byteLength === 16) return "the arraybuffer's length IS EQUAL TO '16' (number)";
+                // if (this.buffer.arrayBuffer.byteLength === 16) return "the arraybuffer's length IS EQUAL TO '16' (number)"; //yeah, i thought so...... so, that means 'this.buffer.arrayBuffer === new ArrayBufferType(16)'(i got that from the definition of the thing here(idk why i didn't check it earlier)) when it is left blank or when you input an invalid pointer... i guess i'll check
+                if (this.buffer.arrayBuffer === new ArrayBufferType(16)) return "yeah... i was right... now how to fix this?? WAIT, according to google, it is the 'null' character, which explains the square. i mean, i guess it isn't wrong, but it doesn't seem right, if its blank, to return that.... well, if you are seeing this, me, you have to continue thinking about this, cause if you are wrong, you are just wasting time";
                 let banana = this.buffer.getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian)
-                if (banana === new Uint8Array(0)) return "IS EQUAL TO 'new Uint8Array(0)'";
-                if (banana === new Uint8Array(1)) return "IS EQUAL TO 'new Uint8Array(1)'";
-                if (banana === 0) return "IS EQUAL TO '0' (number)";
-                if (banana === '0') return "IS EQUAL TO ''0'' (string)";
-                if (banana === '') return "IS EQUAL TO '''' (empty string)";
                 let othertest = new TextDecoder().decode(new Uint8Array(banana.buffer));
                 return othertest
             } catch {
