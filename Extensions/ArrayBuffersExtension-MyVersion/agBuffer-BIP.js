@@ -420,7 +420,8 @@
         getSTRINGValue() {
             try {
                 let banana = 1;
-              	switch (this.type) {
+                let TYPETEST = this.type
+              	switch (TYPETEST) {
                     case "Uint8":
                         banana = new Uint8Array([this.dataView.getUint8(this.index % this.buffer.arrayBuffer.byteLength)]);
                         break;
