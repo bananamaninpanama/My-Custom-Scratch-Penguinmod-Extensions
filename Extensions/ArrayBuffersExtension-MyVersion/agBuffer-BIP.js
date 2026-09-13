@@ -393,11 +393,13 @@
         type;
         index;
         endian;
-        constructor(buffer = new ArrayBufferType(16),index = 0,type = "Uint8",endian = false) {
+        isempty;
+        constructor(buffer = new ArrayBufferType(16),index = 0,type = "Uint8",endian = false, isempty = true) {
             this.buffer = buffer;
             this.index = index;
             this.endian = endian;
             this.type = type;
+            this.isempty = isempty;
             
         }
 
@@ -407,7 +409,7 @@
             return new ArrayBufferPointerType();
         }
         copy() {
-            return new ArrayBufferPointerType(this.buffer,this.index,this.type,this.endian);
+            return new ArrayBufferPointerType(this.buffer,this.index,this.type,this.endian,this.isempty);
         }
         toArrayBuffer() {
             return this.buffer;
@@ -449,7 +451,7 @@
         getSTRINGValue() {
             try {
                 // if (this.buffer.arrayBuffer.byteLength === 16) return "the arraybuffer's length IS EQUAL TO '16' (number)"; //yeah, i thought so...... so, that means 'this.buffer.arrayBuffer === new ArrayBufferType(16)'(i got that from the definition of the thing here(idk why i didn't check it earlier)) when it is left blank or when you input an invalid pointer... i guess i'll check
-                if (this.buffer === new ArrayBufferType(16)) return "yeah... i was right... now how to fix this?? WAIT, according to google, it is the 'null' character, which explains the square. i mean, i guess it isn't wrong, but it doesn't seem right, if its blank, to return that.... well, if you are seeing this, me, you have to continue thinking about this, cause if you are wrong, you are just wasting time";
+                if (this.isempty) return "if you are seeing this, this is placeholder text+ IT WORKED!";
                 let banana = this.buffer.getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian)
                 let othertest = new TextDecoder().decode(new Uint8Array(banana.buffer));
                 return othertest
@@ -2221,7 +2223,7 @@
             if (!BUFFER) return null;
             INDEX = Cast.toNumber(INDEX)
             ENDIAN = Cast.toBoolean(ENDIAN)
-            return new ArrayBufferPointerType(BUFFER,INDEX,TYPE,ENDIAN)
+            return new ArrayBufferPointerType(BUFFER,INDEX,TYPE,ENDIAN,false)
         }
         getPointer({PTR}) {
             if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return 0;
@@ -2271,7 +2273,7 @@
         }
 
         copyPointer({PTR}) {
-            if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return new ArrayBufferPointerType(new ArrayBufferType(0),0,undefined,false);
+            if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return new ArrayBufferPointerType(new ArrayBufferType(0),0,undefined,false,false);
             return PTR.copy()
         }
 
@@ -2283,7 +2285,7 @@
             if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return null;
             ENDIAN = Cast.toBoolean(ENDIAN)
             TYPE = Cast.toString(TYPE)
-            return new ArrayBufferPointerType(PTR.buffer,PTR.index,TYPE,ENDIAN)
+            return new ArrayBufferPointerType(PTR.buffer,PTR.index,TYPE,ENDIAN,false)
         }
 
     }
