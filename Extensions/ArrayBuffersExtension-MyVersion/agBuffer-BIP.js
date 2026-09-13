@@ -2242,7 +2242,7 @@
             return PTR.endian
         }
         getStringFromPointer({PTR}) {
-            if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return null;
+            if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return "";
             return PTR.getSTRINGValue()
         }
 
