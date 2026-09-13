@@ -223,32 +223,32 @@
         }
         getSTRING(type = "Uint8",index,endian = false) {
             switch (type) {
-                    case "Uint8":
-                        return new Uint8Array([this.dataView.getUint8(index)]);
-                    case "Int8":
-                        return new BigInt8Array([this.dataView.getInt8(index)]);
-                    case "Uint16":
-                        return new BigUint16Array([this.dataView.getUint16(index,endian)]);
-                    case "Int16":
-                        return new BigInt16Array([this.dataView.getInt16(index,endian)]);
-                    case "Uint32":
-                        return new BigUint32Array([this.dataView.getUint32(index,endian)]);
-                    case "Int32":
-                        return new BigInt32Array([this.dataView.getInt32(index,endian)]);
-                    case "Uint64":
-                        return new BigUint64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigUint64(index,endian))]);
-                    case "Int64":
-                        return new BigInt64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigInt64(index,endian)]);
-                    case "Float16":
-                        return new Float16Array([this.dataView.getFloat16(index,endian)]);
-                    case "Float32":
-                        return new Float32Array([this.dataView.getFloat32(index,endian)]);
-                    case "Float64":
-                        return new Float64Array([this.dataView.getFloat64(index,endian)]);
-                    default:
-                        throw new TypeError(`Unknown Type: ${type}`);
-                        // new DataView(new ArrayBuffer(32)).getUint32(0)
-                }
+                case "Uint8":
+                    return new Uint8Array([this.dataView.getUint8(index)]);
+                case "Int8":
+                    return new BigInt8Array([this.dataView.getInt8(index)]);
+                case "Uint16":
+                     return new BigUint16Array([this.dataView.getUint16(index,endian)]);
+                case "Int16":
+                    return new BigInt16Array([this.dataView.getInt16(index,endian)]);
+                case "Uint32":
+                    return new BigUint32Array([this.dataView.getUint32(index,endian)]);
+                case "Int32":
+                    return new BigInt32Array([this.dataView.getInt32(index,endian)]);
+                case "Uint64":
+                    return new BigUint64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigUint64(index,endian))]);
+                case "Int64":
+                    return new BigInt64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigInt64(index,endian)]);
+                case "Float16":
+                    return new Float16Array([this.dataView.getFloat16(index,endian)]);
+                case "Float32":
+                    return new Float32Array([this.dataView.getFloat32(index,endian)]);
+                case "Float64":
+                    return new Float64Array([this.dataView.getFloat64(index,endian)]);
+                default:
+                    throw new TypeError(`Unknown Type: ${type}`);
+                    // new DataView(new ArrayBuffer(32)).getUint32(0)
+            }
         }
         static wrapBigInts(bi) {
             // a method to let js BigInts not break everything ever either by converting it to a jwInt if the extension is added, or making it a string otherwise.
