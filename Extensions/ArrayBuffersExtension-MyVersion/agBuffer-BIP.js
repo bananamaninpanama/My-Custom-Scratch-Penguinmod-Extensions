@@ -422,37 +422,37 @@
                 let TYPETEST = this.type;
               	switch (TYPETEST) {
                     case "Uint8":
-                        banana = new Uint8Array([buffer.dataView.getUint8(this.index % this.buffer.arrayBuffer.byteLength)]);
+                        banana = new Uint8Array([this.buffer.dataView.getUint8(this.index % this.buffer.arrayBuffer.byteLength)]);
                         break;
                     case "Int8":
-                        banana = new BigInt8Array([buffer.dataView.getInt8(this.index % this.buffer.arrayBuffer.byteLength)]);
+                        banana = new BigInt8Array([this.buffer.dataView.getInt8(this.index % this.buffer.arrayBuffer.byteLength)]);
                     	break;
                     case "Uint16":
-                        banana = new BigUint16Array([buffer.dataView.getUint16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
+                        banana = new BigUint16Array([this.buffer.dataView.getUint16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Int16":
-                        banana = new BigInt16Array([buffer.dataView.getInt16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
+                        banana = new BigInt16Array([this.buffer.dataView.getInt16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Uint32":
-                        banana = new BigUint32Array([buffer.dataView.getUint32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
+                        banana = new BigUint32Array([this.buffer.dataView.getUint32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Int32":
-                        banana = new BigInt32Array([buffer.dataView.getInt32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
+                        banana = new BigInt32Array([this.buffer.dataView.getInt32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Uint64":
-                        banana = new BigUint64Array([buffer.wrapBigInts(ArrayBufferType.dataView.getBigUint64((this.index % this.buffer.arrayBuffer.byteLength),this.endian))]);
+                        banana = new BigUint64Array([this.buffer.wrapBigInts(ArrayBufferType.dataView.getBigUint64((this.index % this.buffer.arrayBuffer.byteLength),this.endian))]);
                     	break;
                     case "Int64":
-                        banana = new BigInt64Array([buffer.wrapBigInts(ArrayBufferType.dataView.getBigInt64((this.index % this.buffer.arrayBuffer.byteLength),this.endian))]);
+                        banana = new BigInt64Array([this.buffer.wrapBigInts(ArrayBufferType.dataView.getBigInt64((this.index % this.buffer.arrayBuffer.byteLength),this.endian))]);
                     	break;
                     case "Float16":
-                        banana = new Float16Array([buffer.dataView.getFloat16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
+                        banana = new Float16Array([this.buffer.dataView.getFloat16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Float32":
-                        banana = new Float32Array([buffer.dataView.getFloat32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
+                        banana = new Float32Array([this.buffer.dataView.getFloat32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Float64":
-                        banana = new Float64Array([buffer.dataView.getFloat64((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
+                        banana = new Float64Array([this.buffer.dataView.getFloat64((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     default:
                         throw new TypeError(`Unknown Type: ${this.type}`);
