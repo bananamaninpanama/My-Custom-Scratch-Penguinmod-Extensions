@@ -448,7 +448,7 @@
         }
         getSTRINGValue() {
             
-                let banana = this.buffer.get(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian)
+                let banana = this.buffer.getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian)
                 let othertest = new TextDecoder().decode(new Uint8Array(banana.buffer));
                 return othertest
             
