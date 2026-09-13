@@ -460,7 +460,7 @@
                         // new DataView(new ArrayBuffer(32)).getUint32(0)
                 }
                 return new TextDecoder().decode(new Uint8Array(banana.buffer));
-            } catch {
+            } catch (error) {
                 if (error instanceof TypeError) {
                     throw new TypeError(`Unknown Type: ${this.type}`);
                 } else {
