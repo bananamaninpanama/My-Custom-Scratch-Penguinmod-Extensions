@@ -226,15 +226,15 @@
                 case "Uint8":
                     return new Uint8Array([this.dataView.getUint8(index)]);
                 case "Int8":
-                    return new BigInt8Array([this.dataView.getInt8(index)]);
+                    return new Int8Array([this.dataView.getInt8(index)]);
                 case "Uint16":
-                     return new BigUint16Array([this.dataView.getUint16(index,endian)]);
+                    return new Uint16Array([this.dataView.getUint16(index,endian)]);
                 case "Int16":
-                    return new BigInt16Array([this.dataView.getInt16(index,endian)]);
+                    return new Int16Array([this.dataView.getInt16(index,endian)]);
                 case "Uint32":
-                    return new BigUint32Array([this.dataView.getUint32(index,endian)]);
+                    return new Uint32Array([this.dataView.getUint32(index,endian)]);
                 case "Int32":
-                    return new BigInt32Array([this.dataView.getInt32(index,endian)]);
+                    return new Int32Array([this.dataView.getInt32(index,endian)]);
                 case "Uint64":
                     return new BigUint64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigUint64(index,endian))]);
                 case "Int64":
