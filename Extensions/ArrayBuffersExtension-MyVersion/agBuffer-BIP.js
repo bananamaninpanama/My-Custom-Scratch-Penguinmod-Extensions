@@ -463,7 +463,7 @@
                 }
                 return new TextDecoder().decode(new Uint8Array(banana.buffer));
             } catch {
-                return 0;
+                return banana; //WHY IS THIS SO HARD TO TEST
             }
         }
         setValue(value) {
@@ -2254,7 +2254,6 @@
         }
         getStringFromPointer({PTR}) {
             if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return "(invalid)";
-            return PTR //this is a test
             return PTR.getSTRINGValue()
         }
 
