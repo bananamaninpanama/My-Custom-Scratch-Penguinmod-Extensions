@@ -1,3 +1,5 @@
+(function(Scratch) {
+'use strict';
 class MyExtensionthing {
     getInfo() {
         return {
@@ -157,3 +159,4 @@ class MyExtensionthing {
       //something, something, orange you glad i didnt say banana?
     }
 }Scratch.extensions.register(new MyExtensionthing());
+})(Scratch);
