@@ -448,9 +448,8 @@
         }
         getSTRINGValue() {
             try {
-                if  (this.buffer == null) return "";
                 let banana = this.buffer.getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian)
-                if (banana == null) return "";
+                if (banana === 0 || banana === null || banana === "") return "";
                 let othertest = new TextDecoder().decode(new Uint8Array(banana.buffer));
                 return othertest
             } catch {
@@ -2244,7 +2243,7 @@
             return PTR.endian
         }
         getStringFromPointer({PTR}) {
-            if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return 0;
+            if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return "";
             return PTR.getSTRINGValue()
         }
 
