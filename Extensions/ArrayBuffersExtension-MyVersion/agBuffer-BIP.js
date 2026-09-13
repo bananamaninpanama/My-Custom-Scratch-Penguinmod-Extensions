@@ -421,44 +421,47 @@
             try {
                 let thingy = this.buffer.get(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian);
                 let banana = 1;
+                if (thingy === "") {
+                    return "(Invalid)"; 
+                }
               	switch (this.type) {
                     case "Uint8":
                         banana = new Uint8Array([thingy]);
-                    		break;
+                        break;
                     case "Int8":
-                        banana = new Uint8Array(new Int8Array([thingy]).buffer);
-                    		break;
+                        banana = new BigInt8Array([thingy]);
+                    	break;
                     case "Uint16":
-                        banana = new Uint8Array(new Uint16Array([thingy]).buffer);
-                    		break;
+                        banana = new BigUint16Array([thingy]);
+                    	break;
                     case "Int16":
-                        banana = new Uint8Array(new Int16Array([thingy]).buffer);
-                    		break;
+                        banana = new BigInt16Array([thingy]);
+                    	break;
                     case "Uint32":
-                        banana = new Uint8Array(new Uint32Array([thingy]).buffer);
-                    		break;
+                        banana = new BigUint32Array([thingy]);
+                    	break;
                     case "Int32":
-                        banana = new Uint8Array(new Int32Array([thingy]).buffer);
-                    		break;
+                        banana = new BigInt32Array([thingy]);
+                    	break;
                     case "Uint64":
-                        banana = new Uint8Array(new BigUint64Array([thingy]).buffer);
-                    		break;
+                        banana = new BigUint64Array([thingy]);
+                    	break;
                     case "Int64":
-                        banana = new Uint8Array(new BigInt64Array([thingy]).buffer);
-                    		break;
+                        banana = new BigInt64Array([thingy]);
+                    	break;
                     case "Float16":
-                        banana = new Uint8Array(new Float16Array([thingy]).buffer);
-                    		break;
+                        banana = new Float16Array([thingy]);
+                    	break;
                     case "Float32":
-                        banana = new Uint8Array(new Float32Array([thingy]).buffer);
-                    		break;
+                        banana = new Float32Array([thingy]);
+                    	break;
                     case "Float64":
-                        banana = new Uint8Array(new Float64Array([thingy]).buffer);
-                    		break;
+                        banana = new Float64Array([thingy]);
+                    	break;
                     default:
                         return "(Invalid)"; //i think this is the right way to do it
                 }
-                return new TextDecoder().decode(banana);
+                return new TextDecoder().decode(new Uint8Array(banana.buffer));
             } catch {
                 return 0;
             }
