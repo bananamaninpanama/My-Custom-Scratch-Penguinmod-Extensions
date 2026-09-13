@@ -238,7 +238,7 @@
                 case "Uint64":
                     return new BigUint64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigUint64(index,endian))]);
                 case "Int64":
-                    return new BigInt64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigInt64(index,endian)]);
+                    return new BigInt64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigInt64(index,endian))]);
                 case "Float16":
                     return new Float16Array([this.dataView.getFloat16(index,endian)]);
                 case "Float32":
