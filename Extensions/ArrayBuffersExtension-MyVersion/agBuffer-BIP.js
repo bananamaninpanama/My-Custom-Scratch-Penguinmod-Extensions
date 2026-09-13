@@ -428,31 +428,31 @@
                         banana = new BigInt8Array([this.dataView.getInt8(this.index % this.buffer.arrayBuffer.byteLength)]);
                     	break;
                     case "Uint16":
-                        banana = new BigUint16Array([this.dataView.getUint16(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
+                        banana = new BigUint16Array([this.dataView.getUint16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Int16":
-                        banana = new BigInt16Array([this.dataView.getInt16(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
+                        banana = new BigInt16Array([this.dataView.getInt16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Uint32":
-                        banana = new BigUint32Array([this.dataView.getUint32(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
+                        banana = new BigUint32Array([this.dataView.getUint32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Int32":
-                        banana = new BigInt32Array([this.dataView.getInt32(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
+                        banana = new BigInt32Array([this.dataView.getInt32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Uint64":
-                        banana = new BigUint64Array([ArrayBufferType.wrapBigInts(this.dataView.getBigUint64(this.index % this.buffer.arrayBuffer.byteLength,this.endian))]);
+                        banana = new BigUint64Array([ArrayBufferType.wrapBigInts(this.dataView.getBigUint64((this.index % this.buffer.arrayBuffer.byteLength),this.endian))]);
                     	break;
                     case "Int64":
-                        banana = new BigInt64Array([ArrayBufferType.wrapBigInts(this.dataView.getBigInt64(this.index % this.buffer.arrayBuffer.byteLength,this.endian))]);
+                        banana = new BigInt64Array([ArrayBufferType.wrapBigInts(this.dataView.getBigInt64((this.index % this.buffer.arrayBuffer.byteLength),this.endian))]);
                     	break;
                     case "Float16":
-                        banana = new Float16Array([this.dataView.getFloat16(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
+                        banana = new Float16Array([this.dataView.getFloat16((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Float32":
-                        banana = new Float32Array([this.dataView.getFloat32(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
+                        banana = new Float32Array([this.dataView.getFloat32((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     case "Float64":
-                        banana = new Float64Array([this.dataView.getFloat64(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
+                        banana = new Float64Array([this.dataView.getFloat64((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     default:
                         throw new TypeError(`Unknown Type: ${type}`);
@@ -460,7 +460,7 @@
                 }
                 return new TextDecoder().decode(new Uint8Array(banana.buffer));
             } catch {
-                return "error";
+                return 0;
             }
         }
         setValue(value) {
