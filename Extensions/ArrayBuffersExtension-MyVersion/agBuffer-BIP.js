@@ -418,7 +418,6 @@
             }
         }
         getSTRINGValue() {
-            try {
                 let banana = 1;
                 let TYPETEST = this.type;
               	switch (TYPETEST) {
@@ -460,13 +459,7 @@
                         // new DataView(new ArrayBuffer(32)).getUint32(0)
                 }
                 return new TextDecoder().decode(new Uint8Array(banana.buffer));
-            } catch (error) {
-                if (error instanceof TypeError) {
-                    throw new TypeError(`Unknown Type: ${this.type}`);
-                } else {
-                    throw new Error(`lets see if THIS loads: ${error.message}`);
-                }
-            }
+            
         }
         setValue(value) {
             try {
