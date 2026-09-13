@@ -419,51 +419,48 @@
         }
         getSTRINGValue() {
             try {
-                let thingy = this.buffer.get(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian);
                 let banana = 1;
-                if (thingy === "") {
-                    return "(Invalid)"; 
-                }
               	switch (this.type) {
                     case "Uint8":
-                        banana = new Uint8Array([thingy]);
+                        banana = new Uint8Array([this.dataView.getUint8(this.index % this.buffer.arrayBuffer.byteLength)]);
                         break;
                     case "Int8":
-                        banana = new BigInt8Array([thingy]);
+                        banana = new BigInt8Array([this.dataView.getInt8(this.index % this.buffer.arrayBuffer.byteLength)]);
                     	break;
                     case "Uint16":
-                        banana = new BigUint16Array([thingy]);
+                        banana = new BigUint16Array([this.dataView.getUint16(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
                     	break;
                     case "Int16":
-                        banana = new BigInt16Array([thingy]);
+                        banana = new BigInt16Array([this.dataView.getInt16(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
                     	break;
                     case "Uint32":
-                        banana = new BigUint32Array([thingy]);
+                        banana = new BigUint32Array([this.dataView.getUint32(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
                     	break;
                     case "Int32":
-                        banana = new BigInt32Array([thingy]);
+                        banana = new BigInt32Array([this.dataView.getInt32(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
                     	break;
                     case "Uint64":
-                        banana = new BigUint64Array([thingy]);
+                        banana = new BigUint64Array([ArrayBufferType.wrapBigInts(this.dataView.getBigUint64(this.index % this.buffer.arrayBuffer.byteLength,this.endian))]);
                     	break;
                     case "Int64":
-                        banana = new BigInt64Array([thingy]);
+                        banana = new BigInt64Array([ArrayBufferType.wrapBigInts(this.dataView.getBigInt64(this.index % this.buffer.arrayBuffer.byteLength,this.endian))]);
                     	break;
                     case "Float16":
-                        banana = new Float16Array([thingy]);
+                        banana = new Float16Array([this.dataView.getFloat16(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
                     	break;
                     case "Float32":
-                        banana = new Float32Array([thingy]);
+                        banana = new Float32Array([this.dataView.getFloat32(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
                     	break;
                     case "Float64":
-                        banana = new Float64Array([thingy]);
+                        banana = new Float64Array([this.dataView.getFloat64(this.index % this.buffer.arrayBuffer.byteLength,this.endian)]);
                     	break;
                     default:
-                        return "(Invalid)"; //i think this is the right way to do it
+                        throw new TypeError(`Unknown Type: ${type}`);
+                        // new DataView(new ArrayBuffer(32)).getUint32(0)
                 }
                 return new TextDecoder().decode(new Uint8Array(banana.buffer));
             } catch {
-                return banana; //WHY IS THIS SO HARD TO TEST
+                return "error";
             }
         }
         setValue(value) {
