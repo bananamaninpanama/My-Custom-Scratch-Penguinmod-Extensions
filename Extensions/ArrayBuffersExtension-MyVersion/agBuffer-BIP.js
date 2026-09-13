@@ -460,7 +460,7 @@
                 }
                 return new TextDecoder().decode(new Uint8Array(banana.buffer));
             } catch {
-                return 0;
+                throw new TypeError(`Unknown Type: ${this.type}`);
             }
         }
         setValue(value) {
