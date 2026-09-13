@@ -448,7 +448,9 @@
         }
         getSTRINGValue() {
             try {
-                return new TextDecoder().decode(new Uint8Array(this.buffer.get(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian).buffer));
+                let banana = this.buffer.get(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian)
+                let othertest = new TextDecoder().decode(new Uint8Array(banana.buffer));
+                return othertest
             } catch {
                 return "";
             }
