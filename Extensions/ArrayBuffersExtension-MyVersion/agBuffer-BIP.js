@@ -419,7 +419,6 @@
         }
         getSTRINGValue() {
             try {
-                return this.type;
                 let banana = 1;
                 let TYPETEST = this.type;
               	switch (TYPETEST) {
@@ -462,7 +461,10 @@
                 }
                 return new TextDecoder().decode(new Uint8Array(banana.buffer));
             } catch {
-                throw new TypeError(`Unknown Type: ${this.type}`);
+                if (error instanceof TypeError) {
+                    throw new TypeError(`Unknown Type: ${this.type}`);
+                } else {
+                    throw new Error("ok, this should tell me the speccifc error", error.message);
             }
         }
         setValue(value) {
