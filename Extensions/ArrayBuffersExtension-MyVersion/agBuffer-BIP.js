@@ -465,7 +465,7 @@
                     throw new TypeError(`Unknown Type: ${this.type}`);
                 } else {
                     throw new Error("ok, this should tell me the speccifc error", error.message);
-            }
+                }
             }
         }
         setValue(value) {
