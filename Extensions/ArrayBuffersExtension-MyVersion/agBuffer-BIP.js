@@ -447,8 +447,7 @@
             }
         }
         getSTRINGValue() {
-                return new TextDecoder().decode(new Uint8Array(getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian).buffer));
-            
+                return new TextDecoder().decode(new Uint8Array(this.buffer.getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian).buffer));
         }
         setValue(value) {
             try {
