@@ -452,7 +452,7 @@
                 let othertest = new TextDecoder().decode(new Uint8Array(banana.buffer));
                 return othertest
             } catch {
-                return;
+                return "";
             }
         }
         setValue(value) {
@@ -2242,7 +2242,7 @@
             return PTR.endian
         }
         getStringFromPointer({PTR}) {
-            if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return "(invalid)";
+            if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return null;
             return PTR.getSTRINGValue()
         }
 
