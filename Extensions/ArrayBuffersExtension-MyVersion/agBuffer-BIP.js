@@ -236,9 +236,9 @@
                 case "Int32":
                     return new Int32Array([this.dataView.getInt32(index,endian)]);
                 case "Uint64":
-                    return new BigUint64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigUint64(index,endian))]);
+                    return new BigUint64Array([ArrayBufferType.wrapBigInts(this.dataView.getBigUint64(index,endian))]);
                 case "Int64":
-                    return new BigInt64Array([this.wrapBigInts(ArrayBufferType.dataView.getBigInt64(index,endian))]);
+                    return new BigInt64Array([ArrayBufferType.wrapBigInts(this.dataView.getBigInt64(index,endian))]);
                 case "Float16":
                     return new Float16Array([this.dataView.getFloat16(index,endian)]);
                 case "Float32":
@@ -447,11 +447,13 @@
             }
         }
         getSTRINGValue() {
-            
+            try {
                 let banana = this.buffer.getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian)
                 let othertest = new TextDecoder().decode(new Uint8Array(banana.buffer));
                 return othertest
-            
+            } catch {
+                return "";
+            }
         }
         setValue(value) {
             try {
