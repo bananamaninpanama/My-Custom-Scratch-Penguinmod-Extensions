@@ -393,13 +393,11 @@
         type;
         index;
         endian;
-        isempty;
-        constructor(buffer = new ArrayBufferType(16),index = 0,type = "Uint8",endian = false, isempty = true) {
+        constructor(buffer = new ArrayBufferType(0),index = 0,type = "undefined",endian = false) {
             this.buffer = buffer;
             this.index = index;
             this.endian = endian;
             this.type = type;
-            this.isempty = isempty;
             
         }
 
@@ -409,7 +407,7 @@
             return new ArrayBufferPointerType();
         }
         copy() {
-            return new ArrayBufferPointerType(this.buffer,this.index,this.type,this.endian,this.isempty);
+            return new ArrayBufferPointerType(this.buffer,this.index,this.type,this.endian);
         }
         toArrayBuffer() {
             return this.buffer;
@@ -450,8 +448,7 @@
         }
         getSTRINGValue() {
             try {
-                // if (this.buffer.arrayBuffer.byteLength === 16) return "the arraybuffer's length IS EQUAL TO '16' (number)"; //yeah, i thought so...... so, that means 'this.buffer.arrayBuffer === new ArrayBufferType(16)'(i got that from the definition of the thing here(idk why i didn't check it earlier)) when it is left blank or when you input an invalid pointer... i guess i'll check
-                if (this.isempty) return "if you are seeing this, this is placeholder text+ IT WORKED!";
+                // well, i think that i just have to set the default output to be nothing, when there is no input
                 let banana = this.buffer.getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian)
                 let othertest = new TextDecoder().decode(new Uint8Array(banana.buffer));
                 return othertest
@@ -1814,9 +1811,6 @@
                     getStringFromPointer: (node, compiler, imports) => {
                         return new imports.TypedInput(`vm.agBuffer.PointerType.tryConvertToPointer(${compiler.descendInput(node.pointer).asUnknown()}).getSTRINGValue()`, imports.TYPE_STRING);
                     },
-                    getPointerBuffer: (node, compiler, imports) => {
-                        return new imports.TypedInput(`vm.agBuffer.PointerType.tryConvertToPointer(${compiler.descendInput(node.pointer).asUnknown()}).buffer`, imports.TYPE_UNKNOWN);
-                    },
                     setPointer: (node, compiler, imports) => {
                         compiler.source += `vm.agBuffer.PointerType.tryConvertToPointer(${compiler.descendInput(node.pointer).asUnknown()}).setValue(${compiler.descendInput(node.value).asUnknown()});`
                     },
@@ -1855,7 +1849,7 @@
                             case "binary":
                                 return new imports.TypedInput(`Array.from(new Uint8Array(vm.agBuffer.Type.cast(${compiler.descendInput(node.buffer).asUnknown()}).arrayBuffer)).map((value,index,array) => {return value.toString(2).padStart(8,"0")}).join(" ")`, imports.TYPE_STRING);
                             default:
-                                throw new TypeError("how the heck did you trigger this message this should never be possible")
+                                throw new TypeError("how the heck did you trigger this message this should never be possible") //"i saw this and i thought I wrote it. i mean, this is something i would write(i think i did write something like this somewhere else)" -BiP
                         }
                         
                     },
@@ -2223,7 +2217,7 @@
             if (!BUFFER) return null;
             INDEX = Cast.toNumber(INDEX)
             ENDIAN = Cast.toBoolean(ENDIAN)
-            return new ArrayBufferPointerType(BUFFER,INDEX,TYPE,ENDIAN,false)
+            return new ArrayBufferPointerType(BUFFER,INDEX,TYPE,ENDIAN)
         }
         getPointer({PTR}) {
             if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return 0;
@@ -2273,7 +2267,7 @@
         }
 
         copyPointer({PTR}) {
-            if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return new ArrayBufferPointerType(new ArrayBufferType(0),0,undefined,false,false);
+            if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return new ArrayBufferPointerType(new ArrayBufferType(0),0,undefined,false);
             return PTR.copy()
         }
 
@@ -2285,7 +2279,7 @@
             if (!PTR || !(PTR instanceof ArrayBufferPointerType)) return null;
             ENDIAN = Cast.toBoolean(ENDIAN)
             TYPE = Cast.toString(TYPE)
-            return new ArrayBufferPointerType(PTR.buffer,PTR.index,TYPE,ENDIAN,false)
+            return new ArrayBufferPointerType(PTR.buffer,PTR.index,TYPE,ENDIAN)
         }
 
     }
