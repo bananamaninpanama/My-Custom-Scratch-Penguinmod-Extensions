@@ -447,8 +447,11 @@
             }
         }
         getSTRINGValue() {
-                let banana = this.buffer.get(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian);
-                return new TextDecoder().decode(new Uint8Array(banana.buffer));
+            try {
+                return new TextDecoder().decode(new Uint8Array(this.buffer.get(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian).buffer));
+            } catch {
+                return "";
+            }
         }
         setValue(value) {
             try {
