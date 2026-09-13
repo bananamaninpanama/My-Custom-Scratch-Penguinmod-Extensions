@@ -455,6 +455,7 @@
                         banana = new Float64Array([this.dataView.getFloat64((this.index % this.buffer.arrayBuffer.byteLength),this.endian)]);
                     	break;
                     default:
+                        return `WHY ISNT THIS WORKING???? HERE IS THE VALUE TO, FOR BUG TESTING: ` + this.type
                         throw new TypeError(`Unknown Type: ${type}`);
                         // new DataView(new ArrayBuffer(32)).getUint32(0)
                 }
