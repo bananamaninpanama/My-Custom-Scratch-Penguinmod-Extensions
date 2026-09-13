@@ -450,8 +450,8 @@
             try {
                 let banana = this.buffer.getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian)
                 if (banana === new Uint8Array(0)) return "";
-                let convertedstring = new TextDecoder().decode(new Uint8Array(banana.buffer));
-                return convertedstring
+                let othertest = new TextDecoder().decode(new Uint8Array(banana.buffer));
+                return othertest
             } catch {
                 return "";
             }
