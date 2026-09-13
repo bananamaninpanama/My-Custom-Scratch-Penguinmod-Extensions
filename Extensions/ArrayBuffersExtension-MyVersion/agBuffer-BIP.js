@@ -452,7 +452,7 @@
                 let othertest = new TextDecoder().decode(new Uint8Array(banana.buffer));
                 return othertest
             } catch {
-                return "";
+                return;
             }
         }
         setValue(value) {
