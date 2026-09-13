@@ -449,7 +449,11 @@
         getSTRINGValue() {
             try {
                 let banana = this.buffer.getSTRING(this.type,this.index % this.buffer.arrayBuffer.byteLength,this.endian)
-                if (banana === new Uint8Array(0)) return "";
+                if (banana === new Uint8Array(0)) return "IS EQUAL TO 'new Uint8Array(0)'";
+                if (banana === new Uint8Array(1)) return "IS EQUAL TO 'new Uint8Array(1)'";
+                if (banana === 0) return "IS EQUAL TO '0' (number)";
+                if (banana === '0') return "IS EQUAL TO ''0'' (string)";
+                if (banana === '') return "IS EQUAL TO '''' (empty string)";
                 let othertest = new TextDecoder().decode(new Uint8Array(banana.buffer));
                 return othertest
             } catch {
